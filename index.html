@@ -4,19 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>棗紅公館數位轉型平台 - 紅棗產業推廣系統</title>
+    <title>棗紅公館數位轉型平台 | 紅棗產業推廣與農業輔助系統</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        /* ===== 第五步：CSS鄉村科技感設計 ===== */
         :root {
             --jujube-red: #A52A2A;
-            --jujube-dark: #8B0000;
-            --jujube-light: #CD5C5C;
             --nature-green: #8FBC8F;
             --warm-beige: #F5F5DC;
-            --tech-blue: #4A90E2;
-            --shadow: rgba(165, 42, 42, 0.2);
+            --steel-blue: #4682B4;
+            --light-sea-green: #20B2AA;
+            --dark-red: #8B0000;
+            --light-green: #98FB98;
         }
 
         * {
@@ -27,228 +28,46 @@
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background: linear-gradient(135deg, var(--warm-beige) 0%, #E8D5C4 100%);
+            background: linear-gradient(135deg, var(--warm-beige) 0%, var(--nature-green) 100%);
             color: #333;
             line-height: 1.6;
         }
 
-        /* 容器樣式 - 農業儀表板風格 */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
+        /* 導航欄 */
+        .navbar {
+            background: linear-gradient(90deg, var(--jujube-red) 0%, var(--dark-red) 100%);
+            box-shadow: 0 2px 10px rgba(165, 42, 42, 0.3);
+            padding: 1rem 0;
         }
 
-        /* ===== 標題區 - 第三步：HTML架構 ===== */
-        .header {
-            background: linear-gradient(135deg, var(--jujube-red) 0%, var(--jujube-dark) 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow);
-            margin-bottom: 2rem;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-            position: relative;
-            z-index: 1;
-            opacity: 0.9;
-        }
-
-        /* ===== API設定模組 ===== */
-        .api-section {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 20px var(--shadow);
-            border: 2px solid var(--nature-green);
-        }
-
-        .api-section h2 {
-            color: var(--jujube-red);
+        .navbar-brand {
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-weight: 700;
+            color: white !important;
         }
 
-        .api-input-group {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .api-input-group input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid var(--nature-green);
-            border-radius: 10px;
-            font-size: 1rem;
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 1rem;
             transition: all 0.3s ease;
         }
 
-        .api-input-group input:focus {
-            outline: none;
-            border-color: var(--jujube-red);
-            box-shadow: 0 0 0 3px rgba(165, 42, 42, 0.1);
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px var(--shadow);
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--jujube-red), var(--jujube-dark));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px var(--shadow);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(45deg, var(--nature-green), #7CAA7C);
-            color: white;
-        }
-
-        .btn-secondary:hover {
+        .navbar-nav .nav-link:hover {
+            color: var(--warm-beige) !important;
             transform: translateY(-2px);
         }
 
-        .api-status {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-top: 1rem;
-        }
-
-        .api-status.connected {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .api-status.disconnected {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        /* ===== 活動選擇模組 ===== */
-        .activity-section {
-            margin-bottom: 2rem;
-        }
-
-        .activity-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .activity-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px var(--shadow);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .activity-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--jujube-red), var(--nature-green));
-        }
-
-        .activity-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px var(--shadow);
-            border-color: var(--jujube-red);
-        }
-
-        .activity-card.selected {
-            border-color: var(--jujube-red);
-            background: linear-gradient(135deg, #fff 0%, #ffe8e8 100%);
-        }
-
-        .activity-icon {
-            font-size: 2.5rem;
-            color: var(--jujube-red);
-            margin-bottom: 1rem;
-        }
-
-        .activity-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--jujube-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .activity-date {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        /* ===== 品牌故事卡片模組 ===== */
-        .story-section {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 20px var(--shadow);
+        /* 頁面容器 */
+        .page-section {
             display: none;
+            min-height: calc(100vh - 76px);
+            padding: 2rem 0;
         }
 
-        .story-section.active {
+        .page-section.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.5s ease-in;
         }
 
         @keyframes fadeIn {
@@ -256,250 +75,202 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .story-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .story-card {
-            background: linear-gradient(135deg, #fff 0%, var(--warm-beige) 100%);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px var(--shadow);
-            cursor: pointer;
+        /* 模組卡片 */
+        .module-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            border-left: 5px solid var(--nature-green);
+            border: 2px solid transparent;
         }
 
-        .story-card:hover {
-            transform: translateX(5px);
-            border-left-color: var(--jujube-red);
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: var(--jujube-red);
         }
 
-        .story-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, var(--nature-green), var(--jujube-red));
-            border-radius: 10px;
+        .module-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--nature-green);
         }
 
-        .story-title {
-            font-size: 1.4rem;
-            font-weight: 600;
+        .module-icon {
+            font-size: 2.5rem;
             color: var(--jujube-red);
-            margin-bottom: 0.5rem;
+            margin-right: 1rem;
         }
 
-        /* ===== 地圖與詳細資訊模組 ===== */
-        .detail-section {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 20px var(--shadow);
-            display: none;
-        }
-
-        .detail-section.active {
-            display: block;
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .detail-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .map-container {
-            background: linear-gradient(135deg, #87CEEB 0%, var(--nature-green) 100%);
-            border-radius: 15px;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            position: relative;
-        }
-
-        .map-marker {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: var(--jujube-red);
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: rotate(-45deg) translateY(0); }
-            50% { transform: rotate(-45deg) translateY(-10px); }
-        }
-
-        .info-box {
-            background: var(--warm-beige);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 5px solid var(--jujube-red);
-        }
-
-        .info-item {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: start;
-            gap: 10px;
-        }
-
-        .info-item i {
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--jujube-red);
-            margin-top: 3px;
         }
 
-        /* ===== 多媒體影片導覽模組 ===== */
-        .video-section {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 20px var(--shadow);
-        }
-
-        .video-player {
+        /* 360度環景模組 */
+        .panorama-viewer {
             width: 100%;
-            height: 400px;
-            background: linear-gradient(45deg, #000 0%, #333 100%);
+            height: 500px;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #A52A2A 100%);
             border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            cursor: pointer;
             position: relative;
             overflow: hidden;
+            cursor: grab;
         }
 
-        .video-overlay {
+        .panorama-viewer:active {
+            cursor: grabbing;
+        }
+
+        .panorama-controls {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(165,42,42,0.8), rgba(143,188,143,0.8));
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            padding: 1rem 2rem;
+            border-radius: 50px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.3s ease;
+            gap: 1rem;
         }
 
-        .video-player:hover .video-overlay {
-            opacity: 0.9;
-        }
-
-        .play-button {
-            width: 80px;
-            height: 80px;
+        .panorama-controls button {
             background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--jujube-red);
-            transition: transform 0.3s ease;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .video-player:hover .play-button {
+        .panorama-controls button:hover {
+            background: var(--jujube-red);
+            color: white;
             transform: scale(1.1);
         }
 
-        .video-chapters {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .chapter-btn {
-            background: var(--warm-beige);
-            padding: 1rem;
-            border-radius: 10px;
-            border: 2px solid transparent;
+        .panorama-hotspot {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--jujube-red);
+            border: 3px solid white;
+            border-radius: 50%;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
+            animation: pulse 2s infinite;
         }
 
-        .chapter-btn:hover {
-            border-color: var(--jujube-red);
-            background: white;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(165, 42, 42, 0.7); }
+            50% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(165, 42, 42, 0); }
         }
 
-        /* ===== AI圖片生成與推薦模組 ===== */
-        .ai-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            padding: 2rem;
+        /* 活動議程模組 */
+        .event-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .event-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--nature-green);
+        }
+
+        .event-item {
+            display: flex;
+            align-items: center;
             margin-bottom: 2rem;
-            box-shadow: 0 5px 20px var(--shadow);
-            color: white;
+            position: relative;
         }
 
-        .ai-controls {
-            background: rgba(255,255,255,0.1);
+        .event-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .event-content {
+            width: 45%;
+            background: white;
             padding: 1.5rem;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .event-marker {
+            width: 30px;
+            height: 30px;
+            background: var(--jujube-red);
+            border: 4px solid white;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .event-time {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--jujube-red);
+            margin-bottom: 0.5rem;
+        }
+
+        /* AI圖片生成模組 */
+        .ai-generator {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .ai-form-group {
             margin-bottom: 1.5rem;
-            backdrop-filter: blur(10px);
         }
 
-        .ai-input-group {
-            margin-bottom: 1rem;
-        }
-
-        .ai-input-group label {
+        .ai-form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
         }
 
-        .ai-input-group select,
-        .ai-input-group input {
+        .ai-form-group select,
+        .ai-form-group input {
             width: 100%;
             padding: 0.75rem;
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 10px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
             color: white;
             font-size: 1rem;
         }
 
+        .ai-form-group select:focus,
+        .ai-form-group input:focus {
+            outline: none;
+            border-color: white;
+            background: rgba(255,255,255,0.2);
+        }
+
         .ai-result {
+            margin-top: 2rem;
+            padding: 2rem;
             background: white;
             border-radius: 15px;
-            padding: 2rem;
             color: #333;
-            display: none;
         }
 
-        .ai-result.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .ai-image {
+        .ai-image-preview {
             width: 100%;
             height: 300px;
             background: linear-gradient(45deg, var(--nature-green), var(--jujube-red));
@@ -508,42 +279,230 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
-        .trace-report {
-            background: var(--warm-beige);
-            padding: 1.5rem;
-            border-radius: 10px;
+        /* 溯源報告模組 */
+        .traceability-report {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         .trace-step {
             display: flex;
             align-items: center;
-            padding: 1rem;
+            padding: 1.5rem;
             margin-bottom: 1rem;
-            background: white;
-            border-radius: 8px;
-            border-left: 4px solid var(--nature-green);
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid var(--nature-green);
         }
 
         .trace-icon {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: var(--jujube-red);
             margin-right: 1rem;
-            min-width: 40px;
+            min-width: 50px;
+            text-align: center;
         }
 
-        /* ===== 通知系統 ===== */
+        .trace-info h6 {
+            color: var(--jujube-red);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* API儀表板 */
+        .api-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .api-widget {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .api-widget-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .api-widget-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--jujube-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .api-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .api-status.online {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .api-status.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        /* 互動影片導覽 */
+        .video-player {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--nature-green), var(--jujube-red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .video-chapter {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--nature-green);
+        }
+
+        .video-chapter:hover {
+            background: #f8f9fa;
+            border-left-color: var(--jujube-red);
+            transform: translateX(5px);
+        }
+
+        /* UGC上傳模組 */
+        .ugc-upload-zone {
+            border: 3px dashed var(--nature-green);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            background: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .ugc-upload-zone:hover {
+            border-color: var(--jujube-red);
+            background: #f8f9fa;
+        }
+
+        .ugc-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .ugc-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .ugc-item:hover {
+            transform: scale(1.05);
+        }
+
+        .ugc-thumbnail {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(45deg, var(--steel-blue), var(--light-sea-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* 按鈕樣式 */
+        .btn-primary-custom {
+            background: linear-gradient(45deg, var(--jujube-red), var(--dark-red));
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(165, 42, 42, 0.3);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(165, 42, 42, 0.4);
+            color: white;
+        }
+
+        .btn-secondary-custom {
+            background: var(--nature-green);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary-custom:hover {
+            background: #7CAA7C;
+            transform: translateY(-2px);
+        }
+
+        /* 通知系統 */
         .notification {
             position: fixed;
-            top: 20px;
+            top: 100px;
             right: 20px;
+            background: var(--nature-green);
+            color: white;
             padding: 1rem 1.5rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
             transform: translateX(400px);
             transition: transform 0.3s ease;
             max-width: 350px;
@@ -553,251 +512,294 @@
             transform: translateX(0);
         }
 
-        .notification.success {
-            background: var(--nature-green);
-            color: white;
-        }
-
         .notification.error {
             background: #dc3545;
-            color: white;
+        }
+
+        .notification.success {
+            background: #28a745;
         }
 
         .notification.info {
-            background: var(--tech-blue);
-            color: white;
+            background: #17a2b8;
         }
 
-        /* ===== 響應式設計 ===== */
+        /* 載入動畫 */
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 響應式設計 */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
+            .event-timeline::before {
+                left: 20px;
             }
-
-            .api-input-group {
-                flex-direction: column;
+            
+            .event-item {
+                flex-direction: row !important;
             }
-
-            .detail-content {
+            
+            .event-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+            
+            .event-marker {
+                left: 20px;
+            }
+            
+            .panorama-viewer {
+                height: 300px;
+            }
+            
+            .api-dashboard {
                 grid-template-columns: 1fr;
             }
+        }
 
-            .activity-grid,
-            .story-grid {
-                grid-template-columns: 1fr;
-            }
+        /* 頁腳 */
+        .footer {
+            background: var(--jujube-red);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--warm-beige);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- ===== 標題區 ===== -->
-        <header class="header">
-            <h1><i class="fas fa-seedling"></i> 棗紅公館數位轉型平台</h1>
-            <p>紅棗產業推廣與農業輔助系統</p>
-        </header>
-
-        <!-- ===== 第一模組：API設定區 ===== -->
-        <section class="api-section">
-            <h2><i class="fas fa-key"></i> API設定模組</h2>
-            <p style="color: #666; margin-bottom: 1rem;">
-                輸入您的Gemini API Key以啟用AI功能（圖片生成、智慧推薦）
-            </p>
-            <div class="api-input-group">
-                <input type="text" id="apiKeyInput" placeholder="請輸入您的Gemini API Key" />
-                <button class="btn btn-primary" onclick="verifyAPIKey()">
-                    <i class="fas fa-check"></i> 驗證API Key
-                </button>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showPage('home')">
+                <i class="material-icons" style="vertical-align: middle;">agriculture</i>
+                棗紅公館數位平台
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('home')">
+                            <i class="material-icons">home</i> 首頁
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('panorama')">
+                            <i class="material-icons">360</i> 360°導覽
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('events')">
+                            <i class="material-icons">event</i> 活動議程
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('stories')">
+                            <i class="material-icons">auto_stories</i> 品牌故事
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('video')">
+                            <i class="material-icons">play_circle</i> 影片導覽
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('ai')">
+                            <i class="material-icons">auto_awesome</i> AI推薦
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('api')">
+                            <i class="material-icons">cloud</i> API監控
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div id="apiStatus"></div>
-        </section>
+        </div>
+    </nav>
 
-        <!-- ===== 第二模組：活動選擇模組 ===== -->
-        <section class="activity-section">
-            <div class="api-section">
-                <h2><i class="fas fa-calendar-alt"></i> 活動選擇模組</h2>
-                <p style="color: #666; margin-bottom: 1.5rem;">
-                    選擇您感興趣的2025紅棗節活動，查看相關品牌故事與資訊
-                </p>
-                <div class="activity-grid">
-                    <div class="activity-card" onclick="selectActivity('harvest', this)">
-                        <div class="activity-icon"><i class="fas fa-apple-alt"></i></div>
-                        <div class="activity-title">紅棗採摘體驗</div>
-                        <div class="activity-date">7/19 10:00-12:00</div>
-                        <p>親自走入果園，體驗採摘新鮮紅棗的樂趣</p>
-                    </div>
-
-                    <div class="activity-card" onclick="selectActivity('cooking', this)">
-                        <div class="activity-icon"><i class="fas fa-utensils"></i></div>
-                        <div class="activity-title">傳統料理DIY</div>
-                        <div class="activity-date">7/19 14:00-16:00</div>
-                        <p>學習製作紅棗糕、紅棗茶等傳統美食</p>
-                    </div>
-
-                    <div class="activity-card" onclick="selectActivity('market', this)">
-                        <div class="activity-icon"><i class="fas fa-store"></i></div>
-                        <div class="activity-title">農民市集</div>
-                        <div class="activity-date">7/19-20 全日</div>
-                        <p>選購在地紅棗產品與農特產品</p>
-                    </div>
-
-                    <div class="activity-card" onclick="selectActivity('culture', this)">
-                        <div class="activity-icon"><i class="fas fa-music"></i></div>
-                        <div class="activity-title">文化表演</div>
-                        <div class="activity-date">7/20 15:00-17:00</div>
-                        <p>欣賞客家傳統表演與在地藝術創作</p>
-                    </div>
-                </div>
+    <!-- 首頁 -->
+    <main id="home" class="page-section active" style="margin-top: 76px;">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h1 style="color: var(--jujube-red); font-size: 3rem; font-weight: 700;">
+                    <i class="material-icons" style="font-size: 3rem; vertical-align: middle;">agriculture</i>
+                    棗紅公館數位轉型平台
+                </h1>
+                <p class="lead" style="color: var(--dark-red);">紅棗產業推廣與農業輔助系統</p>
             </div>
-        </section>
 
-        <!-- ===== 第三模組：品牌故事卡片區 ===== -->
-        <section id="storySection" class="story-section">
-            <h2 style="color: var(--jujube-red); margin-bottom: 1.5rem;">
-                <i class="fas fa-book-open"></i> 品牌故事卡片模組
-            </h2>
-            <div class="story-grid" id="storyGrid">
-                <!-- 故事卡片將由JavaScript動態生成 -->
-            </div>
-        </section>
-
-        <!-- ===== 第四模組：地圖與詳細資訊區 ===== -->
-        <section id="detailSection" class="detail-section">
-            <h2 style="color: var(--jujube-red); margin-bottom: 1.5rem;">
-                <i class="fas fa-map-marked-alt"></i> 地圖與環境資訊
-            </h2>
-            <div class="detail-content">
-                <div>
-                    <div class="map-container" id="mapContainer">
-                        <div class="map-marker"></div>
-                        <i class="fas fa-map"></i>
-                    </div>
-                    <p style="text-align: center; margin-top: 1rem; color: #666;">
-                        <i class="fas fa-info-circle"></i> 點擊地圖標記查看詳細位置
-                    </p>
-                </div>
-                <div>
-                    <div class="info-box" id="infoBox">
-                        <!-- 資訊將由JavaScript動態生成 -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="module-card text-center" onclick="showPage('panorama')">
+                        <i class="material-icons module-icon">360</i>
+                        <h4 class="module-title">360°環景導覽</h4>
+                        <p>沉浸式紅棗園區體驗，互動式熱點探索</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- ===== 第五模組：多媒體影片導覽模組 ===== -->
-        <section class="video-section">
-            <h2 style="color: var(--jujube-red); margin-bottom: 1.5rem;">
-                <i class="fas fa-video"></i> 多媒體影片導覽模組
-            </h2>
-            <div class="video-player" onclick="playVideo('main')">
-                <div class="video-overlay">
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
+                <div class="col-md-4 mb-4">
+                    <div class="module-card text-center" onclick="showPage('events')">
+                        <i class="material-icons module-icon">event</i>
+                        <h4 class="module-title">活動議程選擇</h4>
+                        <p>2025紅棗節完整時程與線上報名</p>
                     </div>
-                    <p style="margin-top: 1rem; font-size: 1.2rem;">點擊播放園區導覽影片</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="module-card text-center" onclick="showPage('stories')">
+                        <i class="material-icons module-icon">auto_stories</i>
+                        <h4 class="module-title">品牌故事卡片</h4>
+                        <p>農民訪談影片與UGC內容分享</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="module-card text-center" onclick="showPage('video')">
+                        <i class="material-icons module-icon">play_circle</i>
+                        <h4 class="module-title">互動影片導覽</h4>
+                        <p>分章節影音內容與多媒體管理</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="module-card text-center" onclick="showPage('ai')">
+                        <i class="material-icons module-icon">auto_awesome</i>
+                        <h4 class="module-title">AI圖片生成</h4>
+                        <p>智慧推薦產品與溯源報告生成</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="module-card text-center" onclick="showPage('api')">
+                        <i class="material-icons module-icon">cloud</i>
+                        <h4 class="module-title">API監控中心</h4>
+                        <p>天氣預警與農藥檢測數據整合</p>
+                    </div>
                 </div>
             </div>
+        </div>
+    </main>
 
-            <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--jujube-dark);">
-                選擇章節
-            </h4>
-            <div class="video-chapters">
-                <div class="chapter-btn" onclick="playVideo('chapter1')">
-                    <strong>第一章：紅棗種植</strong>
-                    <div style="color: #666; font-size: 0.9rem;">了解紅棗的種植過程</div>
-                </div>
-                <div class="chapter-btn" onclick="playVideo('chapter2')">
-                    <strong>第二章：採收加工</strong>
-                    <div style="color: #666; font-size: 0.9rem;">探索採收與加工技術</div>
-                </div>
-                <div class="chapter-btn" onclick="playVideo('chapter3')">
-                    <strong>第三章：產品應用</strong>
-                    <div style="color: #666; font-size: 0.9rem;">紅棗產品的多元應用</div>
-                </div>
-                <div class="chapter-btn" onclick="playVideo('chapter4')">
-                    <strong>第四章：永續發展</strong>
-                    <div style="color: #666; font-size: 0.9rem;">環保與永續農業實踐</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== 第六模組：AI圖片生成與推薦模組 ===== -->
-        <section class="ai-section">
-            <h2 style="margin-bottom: 1.5rem;">
-                <i class="fas fa-robot"></i> AI圖片生成與推薦模組
-            </h2>
-            <div class="ai-controls">
-                <div class="ai-input-group">
-                    <label><i class="fas fa-user"></i> 年齡分群</label>
-                    <select id="ageGroup">
-                        <option value="">請選擇年齡區間</option>
-                        <option value="18-25">18-25歲（年輕族群）</option>
-                        <option value="26-35">26-35歲（青壯年）</option>
-                        <option value="36-50">36-50歲（中年族群）</option>
-                        <option value="51+">51歲以上（銀髮族）</option>
-                    </select>
+    <!-- 360度環景導覽頁 -->
+    <main id="panorama" class="page-section" style="margin-top: 76px;">
+        <div class="container py-5">
+            <div class="module-card">
+                <div class="module-header">
+                    <i class="material-icons module-icon">360</i>
+                    <h2 class="module-title">360度紅棗園區環景導覽</h2>
                 </div>
 
-                <div class="ai-input-group">
-                    <label><i class="fas fa-box"></i> 產品類型</label>
-                    <select id="productType">
-                        <option value="">請選擇產品類型</option>
-                        <option value="fresh">新鮮紅棗</option>
-                        <option value="dried">紅棗干</option>
-                        <option value="tea">紅棗茶</option>
-                        <option value="gift">禮盒組合</option>
-                    </select>
+                <div class="panorama-viewer" id="panoramaViewer">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; text-align: center; flex-direction: column;">
+                        <i class="material-icons" style="font-size: 5rem; margin-bottom: 1rem;">landscape</i>
+                        <p>拖曳滑鼠探索紅棗園區</p>
+                        <p style="font-size: 1rem;">點擊熱點查看更多資訊</p>
+                    </div>
+                    
+                    <!-- 互動熱點 -->
+                    <div class="panorama-hotspot" style="top: 30%; left: 20%;" onclick="showHotspotInfo('採收區')"></div>
+                    <div class="panorama-hotspot" style="top: 50%; left: 60%;" onclick="showHotspotInfo('加工廠')"></div>
+                    <div class="panorama-hotspot" style="top: 40%; left: 80%;" onclick="showHotspotInfo('展售中心')"></div>
+
+                    <div class="panorama-controls">
+                        <button onclick="rotatePanorama('left')" title="向左旋轉">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button onclick="zoomPanorama('in')" title="放大">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                        <button onclick="zoomPanorama('out')" title="縮小">
+                            <i class="fas fa-search-minus"></i>
+                        </button>
+                        <button onclick="rotatePanorama('right')" title="向右旋轉">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button onclick="toggleFullscreen()" title="全螢幕">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="generateAIContent()">
-                    <i class="fas fa-magic"></i> 生成AI推薦圖片與溯源報告
-                </button>
-            </div>
-
-            <div id="aiResult" class="ai-result">
-                <h3 style="color: var(--jujube-red); margin-bottom: 1rem;">
-                    <i class="fas fa-image"></i> AI生成產品圖片
-                </h3>
-                <div class="ai-image" id="aiImage">
-                    <i class="fas fa-apple-alt"></i>
-                </div>
-
-                <h3 style="color: var(--jujube-red); margin-bottom: 1rem;">
-                    <i class="fas fa-route"></i> 產品溯源報告
-                </h3>
-                <div class="trace-report" id="traceReport">
-                    <!-- 溯源資訊將由JavaScript動態生成 -->
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="api-widget">
+                            <i class="fas fa-map-marked-alt api-widget-icon" style="color: var(--jujube-red);"></i>
+                            <h6>園區面積</h6>
+                            <div class="api-widget-value">15公頃</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="api-widget">
+                            <i class="fas fa-tree api-widget-icon" style="color: var(--nature-green);"></i>
+                            <h6>紅棗樹數量</h6>
+                            <div class="api-widget-value">2,000+</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="api-widget">
+                            <i class="fas fa-users api-widget-icon" style="color: var(--steel-blue);"></i>
+                            <h6>參與農民</h6>
+                            <div class="api-widget-value">50+</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </main>
 
-    <!-- 通知系統 -->
-    <div id="notification" class="notification"></div>
+    <!-- 活動議程頁 -->
+    <main id="events" class="page-section" style="margin-top: 76px;">
+        <div class="container py-5">
+            <div class="module-card">
+                <div class="module-header">
+                    <i class="material-icons module-icon">event</i>
+                    <h2 class="module-title">2025紅棗節活動議程</h2>
+                </div>
 
-    <!-- ===== 第四步：JavaScript互動功能 ===== -->
-    <script>
-        // 全域變數
-        let apiConnected = false;
-        let selectedActivity = null;
-        let currentStory = null;
+                <div class="text-center mb-4">
+                    <h4 style="color: var(--jujube-red);">📅 2025年7月19-20日 | 苗栗陶瓷農創園區</h4>
+                </div>
 
-        // 活動故事數據庫
-        const activityStories = {
-            harvest: [
-                {
-                    id: 'story1',
-                    title: '農民阿忠的故事',
-                    description: '三代傳承的紅棗種植技術，堅持無農藥有機栽培',
-                    icon: 'fa-user-farmer',
-                    location: '公館鄉福基村',
-                    coordinates: '24°30\'N, 120°49\'E',
-                    details: '阿忠伯從祖父輩就開始種植紅棗，至今已有60年歷史。他堅持使用傳統有機栽培方式，不使用化學農藥，確保每一顆紅棗都健康安全。'
-                },
-                {
-                    id: 'story2',
-                    title: '永續農業實踐',
-                    description: '結合現代科技與傳統智慧的永續種植模式',
-                    icon: 'fa-leaf',
-                    location: '公館鄉紅棗園區',
-                    coordinates: '24
+                <div class="event-timeline">
+                    <div class="event-item">
+                        <div class="event-content">
+                            <div class="event-time">
+                                <i class="far fa-clock"></i> 7/19 09:00 - 10:00
+                            </div>
+                            <h5>開幕式暨歡迎致詞</h5>
+                            <p>縣長、農會理事長致詞，介紹紅棗產業發展現況</p>
+                            <button class="btn btn-sm btn-primary-custom" onclick="registerActivity('開幕式')">
+                                <i class="fas fa-check"></i> 我要參加
+                            </button>
+                        </div>
+                        <div class="event-marker"></div>
+                    </div>
+
+                    <div class="event-item">
+                        <div class="event-content">
+                            <div class="event-time">
+                                <i class="far fa-clock"></i> 7/19 10:00 - 12:00
+                            </div>
+                            <h5>紅棗採摘體驗</h5>
+                            <p>親自走入果園，體驗採摘新鮮紅棗的樂趣（限額100名）</p>
+                            <button class="btn btn-sm btn-primary-custom" onclick="registerActivity('採摘體驗')">
+                                <i class="fas fa-check"></i> 我要參加
